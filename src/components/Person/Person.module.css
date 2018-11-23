@@ -1,0 +1,9 @@
+.Person {
+    border: 1px solid #eee;
+    padding: 10px;
+    margin: 10px auto;
+    width: 460px;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+}
