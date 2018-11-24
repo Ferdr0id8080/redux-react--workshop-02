@@ -5,19 +5,19 @@ const initialState = {
 const reducer = (state = initialState, action) => {
     if (action.type === 'ADD_PERSON') {
         const updatedPersonList = [...state.persons]
+        let generatedId = null
         if (updatedPersonList.length > 0) {
-            updatedPersonList.push({
-                id: updatedPersonList[updatedPersonList.length - 1].id + 1,
-                name: 'Fernando',
-                age: Math.floor(Math.random() * (65 - 18)) + 18
-            })
+            generatedId = updatedPersonList[updatedPersonList.length - 1].id + 1
         } else {
-            updatedPersonList.push({
-                id: 100,
-                name: 'Fernando',
-                age: Math.floor(Math.random() * (65 - 18)) + 18
-            })
+            generatedId = 100
         }
+
+        updatedPersonList.push({
+            id: generatedId,
+            name: action.payload.name,
+            age: action.payload.age
+        })
+
         return {
             ...state,
             persons: updatedPersonList
