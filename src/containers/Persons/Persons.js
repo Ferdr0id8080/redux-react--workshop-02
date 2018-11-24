@@ -19,12 +19,23 @@ class Persons extends Component {
     }
 
 
+    addPerson = () => {
+        if (this.state.name.length > 0 && this.state.age.length > 0) {
+            this.props.onAddedPersonHandler(this.state.name, this.state.age)
+            this.setState({
+                name: '',
+                age: ''
+            })
+        }
+    }
+
+
     render() {
         return (
             <div>
                 <input type='text' placeholder='Type a name' value={this.state.name} onChange={this.nameChangedHandler} />
                 <input type='number' placeholder='Type an age' value={this.state.age} onChange={this.ageChangedHandler} />
-                <Button clicked={() => this.props.onAddedPersonHandler(this.state.name, this.state.age)}>Agregar persona</Button>
+                <Button clicked={this.addPerson}>Agregar persona</Button>
                 {this.props.persons.map(i => 
                     (<Person key={i.id} 
                         name={i.name} age={i.age} deleted={this.props.onDeletedPersonHandler.bind(this, i.id)} />)
